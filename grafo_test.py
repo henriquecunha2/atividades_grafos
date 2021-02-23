@@ -95,7 +95,6 @@ class TestGrafo(unittest.TestCase):
                           'Z-P', 'Z-M'])
 
         self.assertEqual(self.g_c.vertices_nao_adjacentes(), [])
-
         self.assertEqual(self.g_c3.vertices_nao_adjacentes(), [])
 
     def test_ha_laco(self):
@@ -130,10 +129,10 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.g_c.grau('E'), 3)
         self.assertEqual(self.g_c.grau('P'), 3)
 
-        # Com laço. Lembrando que cada laço conta uma única vez por vértice para cálculo do grau
-        self.assertEqual(self.g_l1.grau('A'), 3)
-        self.assertEqual(self.g_l2.grau('B'), 3)
-        self.assertEqual(self.g_l4.grau('D'), 1)
+        # Com laço. Lembrando que cada laço conta 2 vezes por vértice para cálculo do grau
+        self.assertEqual(self.g_l1.grau('A'), 5)
+        self.assertEqual(self.g_l2.grau('B'), 4)
+        self.assertEqual(self.g_l4.grau('D'), 2)
 
     def test_ha_paralelas(self):
         self.assertTrue(self.g_p.ha_paralelas())

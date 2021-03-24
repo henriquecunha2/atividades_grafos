@@ -86,14 +86,6 @@ class TestGrafo(unittest.TestCase):
 
     def test_vertices_nao_adjacentes(self):
         self.assertEqual(self.g_p.vertices_nao_adjacentes(), ['J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-Z', 'E-J', 'E-P', 'E-M', 'E-T', 'E-Z', 'P-J', 'P-E', 'P-M', 'P-T', 'P-Z', 'M-J', 'M-E', 'M-P', 'M-Z', 'T-J', 'T-E', 'T-P', 'Z-J', 'Z-C', 'Z-E', 'Z-P', 'Z-M'])
-
-        self.assertEqual(self.g_p.vertices_nao_adjacentes(),
-                         ['J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-Z', 'E-J', 'E-P', 'E-M', 'E-T',
-                          'E-Z', 'P-J', 'P-E',
-                          'P-M', 'P-T', 'P-Z', 'M-J', 'M-E', 'M-P', 'M-Z', 'T-J', 'T-E', 'T-P',
-                          'Z-J', 'Z-C', 'Z-E',
-                          'Z-P', 'Z-M'])
-
         self.assertEqual(self.g_c.vertices_nao_adjacentes(), [])
         self.assertEqual(self.g_c3.vertices_nao_adjacentes(), [])
 

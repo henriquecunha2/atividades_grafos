@@ -1,5 +1,5 @@
 import unittest
-from meu_grafo import *
+from meu_grafo_matriz_adjacencia_nao_dir import *
 from bibgrafo.grafo_exceptions import *
 
 class TestGrafo(unittest.TestCase):
@@ -85,7 +85,7 @@ class TestGrafo(unittest.TestCase):
             self.g_p.adicionaAresta('a1', 'J', 'C')
 
     def test_vertices_nao_adjacentes(self):
-        self.assertEqual(self.g_p.vertices_nao_adjacentes(), ['J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-Z', 'E-J', 'E-P', 'E-M', 'E-T', 'E-Z', 'P-J', 'P-E', 'P-M', 'P-T', 'P-Z', 'M-J', 'M-E', 'M-P', 'M-Z', 'T-J', 'T-E', 'T-P', 'Z-J', 'Z-C', 'Z-E', 'Z-P', 'Z-M'])
+        self.assertEqual(self.g_p.vertices_nao_adjacentes(), ['J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-Z', 'E-P', 'E-M', 'E-T', 'E-Z', 'P-M', 'P-T', 'P-Z', 'M-Z'])
         self.assertEqual(self.g_c.vertices_nao_adjacentes(), [])
         self.assertEqual(self.g_c3.vertices_nao_adjacentes(), [])
 

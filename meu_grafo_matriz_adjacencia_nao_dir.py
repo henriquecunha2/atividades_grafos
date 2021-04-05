@@ -10,7 +10,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Uma lista com os pares de vértices não adjacentes
         '''
-        pass # Apague essa instrução e inicie seu código aqui
+        pass
 
     def ha_laco(self):
         '''
@@ -18,6 +18,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um valor booleano que indica se existe algum laço.
         '''
         pass
+
 
     def grau(self, V=''):
         '''

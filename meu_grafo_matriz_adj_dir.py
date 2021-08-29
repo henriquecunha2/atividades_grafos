@@ -1,8 +1,7 @@
-from bibgrafo.grafo_matriz_adj_nao_dir import GrafoMatrizAdjacenciaNaoDirecionado
+from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_exceptions import *
 
-
-class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
+class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
     def vertices_nao_adjacentes(self):
         '''
@@ -49,5 +48,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         '''
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
+        '''
+        pass
+
+    def warshall(self):
+        '''
+        Provê a matriz de alcançabilidade de Warshall do grafo
+        :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
         '''
         pass

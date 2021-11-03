@@ -51,4 +51,5 @@ class MeuGrafo(GrafoListaAdjacencia):
         '''
         pass
 
-
+    def dijkstra_drone(self, vi, vf, carga:int, carga_max:int, pontos_recarga:list()):
+        pass

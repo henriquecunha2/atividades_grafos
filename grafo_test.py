@@ -134,12 +134,13 @@ class TestGrafo(unittest.TestCase):
     def test_vertices_nao_adjacentes(self):
         self.assertEqual(self.g_p.vertices_nao_adjacentes(),
                          {'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-Z', 'E-P', 'E-M', 'E-T', 'E-Z', 'P-M', 'P-T', 'P-Z',
-                          'M-Z'})
-        self.assertEqual(self.g_d.vertices_nao_adjacentes(), {'A-C', 'A-D', 'B-C', 'B-D', 'C-D'})
-        self.assertEqual(self.g_d2.vertices_nao_adjacentes(), {'A-B', 'A-C', 'A-D', 'B-C', 'B-D', 'C-D'})
+                          'M-Z', 'E-J', 'P-J', 'M-J', 'T-J', 'Z-J', 'Z-C', 'P-E', 'M-E', 'T-E', 'Z-E', 'M-P', 'T-P',
+                          'Z-P',
+                          'Z-M'})
+        self.assertEqual(self.g_d.vertices_nao_adjacentes(), {'A-C', 'A-D', 'B-C', 'B-D', 'C-D', 'C-A', 'D-A', 'C-B', 'D-B', 'D-C'})
+        self.assertEqual(self.g_d2.vertices_nao_adjacentes(), {'A-B', 'A-C', 'A-D', 'B-C', 'B-D', 'C-D', 'B-A', 'C-A', 'D-A', 'C-B', 'D-B', 'D-C'})
         self.assertEqual(self.g_c.vertices_nao_adjacentes(), set())
         self.assertEqual(self.g_c3.vertices_nao_adjacentes(), set())
-
     def test_ha_laco(self):
         self.assertFalse(self.g_p.ha_laco())
         self.assertFalse(self.g_p2.ha_laco())

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>grafo_lista_adjacencia - Biblioteca bibgrafo</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Biblioteca bibgrafo</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">modules <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">bibgrafo</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../aresta/" class="dropdown-item">aresta</a>
+</li>
+            
+<li>
+    <a href="../grafo/" class="dropdown-item">grafo</a>
+</li>
+            
+<li>
+    <a href="../grafo_errors/" class="dropdown-item">grafo_errors</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">grafo_lista_adjacencia</a>
+</li>
+            
+<li>
+    <a href="../grafo_matriz_adj_dir/" class="dropdown-item">grafo_matriz_adj_dir</a>
+</li>
+            
+<li>
+    <a href="../grafo_matriz_adj_nao_dir/" class="dropdown-item">grafo_matriz_adj_nao_dir</a>
+</li>
+            
+<li>
+    <a href="../vertice/" class="dropdown-item">vertice</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../grafo_errors/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../grafo_matriz_adj_dir/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/henriquecunha2/bibgrafo" class="nav-link">bibgrafo</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link"></a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#grafolistaadjacencia" class="nav-link">GrafoListaAdjacencia</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1"></h1>
+<h2 id="grafolistaadjacencia">GrafoListaAdjacencia</h2>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L9">source</a></p>
+<pre><code class="language-python">GrafoListaAdjacencia(
+   vertices = None, arestas = None
+)
+</code></pre>
+<hr />
+<p>Esta classe representa um grafo com implementação interna em lista de adjacência</p>
+<p><strong>Attributes</strong></p>
+<ul>
+<li><strong>_vertices</strong> (list) : Uma lista dos vértices (ou nodos) do grafo.</li>
+<li><strong>_arestas</strong>  : Uma dicionário que guarda as arestas do grafo. A chave representa o nome da aresta e o valor é um
+objeto do tipo Aresta que deve conter referências para os vértices</li>
+</ul>
+<p><strong>Methods:</strong></p>
+<h3 id="vertices">.vertices</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L53">source</a></p>
+<pre><code class="language-python">.vertices()
+</code></pre>
+<hr />
+<p>list: Uma lista de vértices. </p>
+<h3 id="arestas">.arestas</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L68">source</a></p>
+<pre><code class="language-python">.arestas()
+</code></pre>
+<hr />
+<p>dict: Um dicionário de arestas. </p>
+<h3 id="vertice_valido">.vertice_valido</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L84">source</a></p>
+<pre><code class="language-python">.vertice_valido(
+   cls, vertice: Vertice
+)
+</code></pre>
+<hr />
+<p>Verifica se um vértice passado como parâmetro está dentro do padrão estabelecido.
+O rótulo do vértice não pode ser vazio.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>vertice</strong>  : Um objeto do tipo Vertice que representa o vértice a ser analisado.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Um valor booleano que indica se o vértice está no formato correto.</p>
+<h3 id="existe_vertice">.existe_vertice</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L95">source</a></p>
+<pre><code class="language-python">.existe_vertice(
+   vertice: Vertice
+)
+</code></pre>
+<hr />
+<p>Verifica se um vértice passado como parâmetro pertence ao grafo.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>vertice</strong>  : O vértice que deve ser verificado.</li>
+</ul>
+<hr />
+<p>Return: Um valor booleano que indica se o vértice existe no grafo.</p>
+<h3 id="existe_rotulo_vertice">.existe_rotulo_vertice</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L104">source</a></p>
+<pre><code class="language-python">.existe_rotulo_vertice(
+   rotulo: str
+)
+</code></pre>
+<hr />
+<p>Verifica se há algum vértice no grafo com o rótulo que é passado como parâmetro.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>rotulo</strong>  : O vértice que deve ser verificado.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Um valor booleano que indica se o vértice existe no grafo.</p>
+<h3 id="get_vertice">.get_vertice</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L117">source</a></p>
+<pre><code class="language-python">.get_vertice(
+   rotulo: str
+)
+</code></pre>
+<hr />
+<p>Retorna o objeto do tipo vértice que tem como rótulo o parâmetro passado.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>rotulo</strong>  : O rótulo do vértice a ser retornado</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Um objeto do tipo vértice que tem como rótulo o parâmetro passado</p>
+<p><strong>Raises</strong></p>
+<p>VerticeInvalidoError se o vértice não for encontrado.</p>
+<h3 id="remove_vertice">.remove_vertice</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L161">source</a></p>
+<pre><code class="language-python">.remove_vertice(
+   v: str
+)
+</code></pre>
+<hr />
+<p>Remove um vértice que tenha o rótulo passado como parâmetro e remove em cascata as arestas que estão
+conectadas a esse vértice.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>v</strong>  : O rótulo do vértice a ser removido.</li>
+</ul>
+<p><strong>Raises</strong></p>
+<p>VerticeInvalidoError se o vértice passado como parâmetro não existir no grafo.</p>
+<h3 id="existe_rotulo_aresta">.existe_rotulo_aresta</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L180">source</a></p>
+<pre><code class="language-python">.existe_rotulo_aresta(
+   r = ''
+)
+</code></pre>
+<hr />
+<p>Verifica se um rótulo de aresta passada como parâmetro pertence ao grafo.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>r</strong>  : O rótulo da aresta a ser verificada</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Um valor booleano que indica se o rótulo da aresta existe no grafo.</p>
+<h3 id="get_aresta">.get_aresta</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L190">source</a></p>
+<pre><code class="language-python">.get_aresta(
+   r
+)
+</code></pre>
+<hr />
+<p>Retorna uma referência para a aresta que tem o rótulo passado como parâmetro</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>r</strong>  : O rótulo da aresta solicitada</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Um objeto do tipo Aresta que é uma referência para a aresta requisitada ou False se a aresta não existe</p>
+<h3 id="aresta_valida">.aresta_valida</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L202">source</a></p>
+<pre><code class="language-python">.aresta_valida(
+   aresta: Aresta
+)
+</code></pre>
+<hr />
+<p>Verifica se uma aresta passada como parâmetro está dentro do padrão estabelecido.
+Uma aresta só é válida se conectar dois vértices existentes no grafo e for uma instância da classe Aresta.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>aresta</strong>  : A aresta que se quer verificar se está no formato correto.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Um valor booleano que indica se a aresta está no formato correto.</p>
+<h3 id="remove_aresta">.remove_aresta</h3>
+<p><a href="https://github.com/henriquecunha2/bibgrafo/blob/master/bibgrafo/grafo_lista_adjacencia.py/#L273">source</a></p>
+<pre><code class="language-python">.remove_aresta(
+   r: str
+)
+</code></pre>
+<hr />
+<p>Remove uma aresta a partir de seu rótulo.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li><strong>r</strong>  : O rótulo da aresta a ser removida.</li>
+</ul>
+<p><strong>Raises</strong></p>
+<p>ArestaInvalidaError se a aresta passada como parâmetro não puder ser removida.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Henrique Cunha</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

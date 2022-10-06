@@ -1,6 +1,7 @@
 import unittest
 from meu_grafo_lista_adj import *
 from bibgrafo.grafo_errors import *
+from bibgrafo.aresta import Aresta, ArestaDirecionada
 
 
 class TestGrafo(unittest.TestCase):

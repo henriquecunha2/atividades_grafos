@@ -1,5 +1,5 @@
 import unittest
-from meu_grafo_matriz_adj_dir import *
+from meu_grafo_matriz_adj_nao_dir import *
 from bibgrafo.grafo_errors import *
 
 class TestGrafo(unittest.TestCase):
@@ -167,71 +167,15 @@ class TestGrafo(unittest.TestCase):
         self.g_d.adiciona_vertice("D")
         self.g_d.adiciona_aresta('asd', 'A', 'B')
 
-        # Grafo com ciclos e laços
-        self.g_e = MeuGrafo()
-        self.g_e.adiciona_vertice("A")
-        self.g_e.adiciona_vertice("B")
-        self.g_e.adiciona_vertice("C")
-        self.g_e.adiciona_vertice("D")
-        self.g_e.adiciona_vertice("E")
-        self.g_e.adiciona_aresta('1', 'A', 'B')
-        self.g_e.adiciona_aresta('2', 'A', 'C')
-        self.g_e.adiciona_aresta('3', 'C', 'A')
-        self.g_e.adiciona_aresta('4', 'C', 'B')
-        self.g_e.adiciona_aresta('10', 'C', 'B')
-        self.g_e.adiciona_aresta('5', 'C', 'D')
-        self.g_e.adiciona_aresta('6', 'D', 'D')
-        self.g_e.adiciona_aresta('7', 'D', 'B')
-        self.g_e.adiciona_aresta('8', 'D', 'E')
-        self.g_e.adiciona_aresta('9', 'E', 'A')
-        self.g_e.adiciona_aresta('11', 'E', 'B')
-
-        # Matrizes para teste do algoritmo de Warshall
-
-        self.g_p_m = self.constroi_matriz(self.g_p)
-        self.g_p_m[0][1] = 1
-        self.g_p_m[0][2] = 1
-        self.g_p_m[1][2] = 1
-        self.g_p_m[3][1] = 1
-        self.g_p_m[3][2] = 1
-        self.g_p_m[4][1] = 1
-        self.g_p_m[4][2] = 1
-        self.g_p_m[4][5] = 1
-        self.g_p_m[4][6] = 1
-        self.g_p_m[5][1] = 1
-        self.g_p_m[5][2] = 1
-        self.g_p_m[5][6] = 1
-
-        self.g_e_m = self.constroi_matriz(self.g_e)
-        for i in range(0, len(self.g_e_m)):
-            self.g_e_m[0][i] = 1
-            self.g_e_m[2][i] = 1
-            self.g_e_m[3][i] = 1
-            self.g_e_m[4][i] = 1
-
-        # Grafos desconexos
-        self.g_dijkstra = MeuGrafo()
-        self.g_dijkstra.adiciona_vertice("A")
-        self.g_dijkstra.adiciona_vertice("B")
-        self.g_dijkstra.adiciona_vertice("C")
-        self.g_dijkstra.adiciona_vertice("D")
-        self.g_dijkstra.adiciona_aresta('1', 'A', 'B', 1)
-        self.g_dijkstra.adiciona_aresta('2', 'A', 'C', 1)
-        self.g_dijkstra.adiciona_aresta('3', 'B', 'D', 1)
-        self.g_dijkstra.adiciona_aresta('2', 'C', 'D', 2)
-
-    def constroi_matriz(self, g: MeuGrafo):
-        ordem = len(g._vertices)
-        m = list()
-        for i in range(ordem):
-            m.append(list())
-            for j in range(ordem):
-                m[i].append(0)
-        return m
+        self.g_d2 = MeuGrafo()
+        self.g_d2.adiciona_vertice("A")
+        self.g_d2.adiciona_vertice("B")
+        self.g_d2.adiciona_vertice("C")
+        self.g_d2.adiciona_vertice("D")
 
     def test_adiciona_aresta(self):
         self.assertTrue(self.g_p.adiciona_aresta('a10', 'J', 'C'))
-        a = ArestaDirecionada("zxc", self.g_p.get_vertice("C"), self.g_p.get_vertice("Z"))
+        a = Aresta("zxc", self.g_p.get_vertice("C"), self.g_p.get_vertice("Z"))
         self.assertTrue(self.g_p.adiciona_aresta(a))
         with self.assertRaises(ArestaInvalidaError):
             self.assertTrue(self.g_p.adiciona_aresta(a))
@@ -258,13 +202,18 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.g_p.remove_vertice("Z"))
 
     def test_remove_aresta(self):
-        self.assertTrue(self.g_p.remove_aresta("a1"))
-        self.assertFalse(self.g_p.remove_aresta("a1"))
-        self.assertTrue(self.g_p.remove_aresta("a7"))
-        self.assertFalse(self.g_c.remove_aresta("a"))
-        self.assertTrue(self.g_c.remove_aresta("a6"))
-        self.assertTrue(self.g_c.remove_aresta("a1", "J"))
-        self.assertTrue(self.g_c.remove_aresta("a5", "C"))
+        self.g_p.remove_aresta("a1")
+        self.assertFalse(self.g_p.existe_rotulo_aresta("a1"))
+        self.g_p.remove_aresta("a7")
+        self.assertFalse(self.g_p.existe_rotulo_aresta("a7"))
+        with self.assertRaises(ArestaInvalidaError):
+            self.g_c.remove_aresta("a")
+        self.g_c.remove_aresta("a6")
+        self.assertFalse(self.g_c.existe_rotulo_aresta("a6"))
+        self.g_c.remove_aresta("a1", "J")
+        self.assertFalse(self.g_c.existe_rotulo_aresta("a1"))
+        self.g_c.remove_aresta("a5", "C")
+        self.assertFalse(self.g_c.existe_rotulo_aresta("a5"))
         with self.assertRaises(VerticeInvalidoError):
             self.g_p.remove_aresta("a2", "X", "C")
         with self.assertRaises(VerticeInvalidoError):
@@ -279,14 +228,13 @@ class TestGrafo(unittest.TestCase):
         self.assertNotEqual(self.g_p, self.g_p4)
 
     def test_vertices_nao_adjacentes(self):
-        self.assertEqual(set(self.g_p.vertices_nao_adjacentes()), {'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-J', 'C-T', 'C-Z', 'C-M', 'C-P', 'E-C', 'E-J', 'E-P',
-                                                                   'E-M', 'E-T', 'E-Z', 'P-J', 'P-E', 'P-M', 'P-T', 'P-Z', 'M-J', 'M-E', 'M-P', 'M-Z', 'T-J',
-                                                                   'T-M', 'T-E', 'T-P', 'Z-J', 'Z-C', 'Z-E', 'Z-P', 'Z-M', 'Z-T'})
+        self.assertEqual(self.g_p.vertices_nao_adjacentes(),
+                         {'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-Z', 'E-P', 'E-M', 'E-T', 'E-Z', 'P-M', 'P-T', 'P-Z',
+                          'M-Z'})
+        self.assertEqual(self.g_l1.vertices_nao_adjacentes(), {'A-C', 'B-C', 'C-D', 'A-D', 'B-D'})
 
-
-        self.assertEqual(set(self.g_c.vertices_nao_adjacentes()), {'C-J', 'C-E', 'C-P', 'E-J', 'E-P', 'P-J'})
-        self.assertEqual(self.g_c3.vertices_nao_adjacentes(), [])
-        self.assertEqual(set(self.g_e.vertices_nao_adjacentes()), {'A-D', 'A-E', 'B-A', 'B-C', 'B-D', 'B-E', 'C-E', 'D-C', 'D-A', 'E-D', 'E-C'})
+        self.assertEqual(self.g_c.vertices_nao_adjacentes(), set())
+        self.assertEqual(self.g_c3.vertices_nao_adjacentes(), set())
 
     def test_ha_laco(self):
         self.assertFalse(self.g_p.ha_laco())
@@ -297,7 +245,6 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.g_l3.ha_laco())
         self.assertTrue(self.g_l4.ha_laco())
         self.assertTrue(self.g_l5.ha_laco())
-        self.assertTrue(self.g_e.ha_laco())
 
     def test_grau(self):
         # Paraíba
@@ -314,8 +261,6 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.g_d.grau('A'), 1)
         self.assertEqual(self.g_d.grau('C'), 0)
         self.assertNotEqual(self.g_d.grau('D'), 2)
-        self.assertEqual(self.g_e.grau('C'), 5)
-        self.assertEqual(self.g_e.grau('D'), 5)
 
         # Completos
         self.assertEqual(self.g_c.grau('J'), 3)
@@ -335,7 +280,6 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse(self.g_c2.ha_paralelas())
         self.assertFalse(self.g_c3.ha_paralelas())
         self.assertTrue(self.g_l1.ha_paralelas())
-        self.assertTrue(self.g_e.ha_paralelas())
 
     def test_arestas_sobre_vertice(self):
         self.assertEqual(set(self.g_p.arestas_sobre_vertice('J')), {'a1'})
@@ -346,11 +290,15 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(set(self.g_d.arestas_sobre_vertice('A')), {'asd'})
         with self.assertRaises(VerticeInvalidoError):
             self.g_p.arestas_sobre_vertice('A')
-        self.assertEqual(set(self.g_e.arestas_sobre_vertice('D')), {'5', '6', '7', '8'})
 
-    def test_warshall(self):
-        self.assertEqual(self.g_p.warshall(), self.g_p_m)
-        self.assertEqual(self.g_e.warshall(), self.g_e_m)
-
-    def test_dijkstra(self):
-        pass
+    def test_eh_completo(self):
+        self.assertFalse(self.g_p.eh_completo())
+        self.assertFalse((self.g_p_sem_paralelas.eh_completo()))
+        self.assertTrue((self.g_c.eh_completo()))
+        self.assertTrue((self.g_c2.eh_completo()))
+        self.assertTrue((self.g_c3.eh_completo()))
+        self.assertFalse((self.g_l1.eh_completo()))
+        self.assertFalse((self.g_l2.eh_completo()))
+        self.assertFalse((self.g_l3.eh_completo()))
+        self.assertFalse((self.g_l4.eh_completo()))
+        self.assertFalse((self.g_l5.eh_completo()))

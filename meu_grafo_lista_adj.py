@@ -51,6 +51,3 @@ class MeuGrafo(GrafoListaAdjacencia):
         :return: Um valor booleano que indica se o grafo é completo
         '''
         pass
-
-    def dijkstra_drone(self, vi, vf, carga:int, carga_max:int, pontos_recarga:list()):
-        pass

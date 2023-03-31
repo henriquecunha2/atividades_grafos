@@ -25,13 +25,14 @@ class TestGrafo(unittest.TestCase):
         self.g_p.adiciona_aresta('a9', 'T', 'Z')
 
         # Clone do Grafo da Paraíba para ver se o método equals está funcionando
-        self.g_p2 = MeuGrafo([Vertice('J'),
-                             Vertice('C'),
-                             Vertice('E'),
-                             Vertice('P'),
-                             Vertice('M'),
-                             Vertice('T'),
-                             Vertice('Z')])
+        self.g_p2 = MeuGrafo()
+        self.g_p2.adiciona_vertice("J")
+        self.g_p2.adiciona_vertice("C")
+        self.g_p2.adiciona_vertice("E")
+        self.g_p2.adiciona_vertice("P")
+        self.g_p2.adiciona_vertice("M")
+        self.g_p2.adiciona_vertice("T")
+        self.g_p2.adiciona_vertice("Z")
         self.g_p2.adiciona_aresta('a1', 'J', 'C')
         self.g_p2.adiciona_aresta('a2', 'C', 'E')
         self.g_p2.adiciona_aresta('a3', 'C', 'E')
@@ -279,14 +280,14 @@ class TestGrafo(unittest.TestCase):
         self.assertNotEqual(self.g_p, self.g_p4)
 
     def test_vertices_nao_adjacentes(self):
-        self.assertEqual(set(self.g_p.vertices_nao_adjacentes()), {'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-J', 'C-T', 'C-Z', 'C-M', 'C-P', 'E-C', 'E-J', 'E-P',
+        self.assertEqual(self.g_p.vertices_nao_adjacentes(), {'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-J', 'C-T', 'C-Z', 'C-M', 'C-P', 'E-C', 'E-J', 'E-P',
                                                                    'E-M', 'E-T', 'E-Z', 'P-J', 'P-E', 'P-M', 'P-T', 'P-Z', 'M-J', 'M-E', 'M-P', 'M-Z', 'T-J',
                                                                    'T-M', 'T-E', 'T-P', 'Z-J', 'Z-C', 'Z-E', 'Z-P', 'Z-M', 'Z-T'})
 
 
-        self.assertEqual(set(self.g_c.vertices_nao_adjacentes()), {'C-J', 'C-E', 'C-P', 'E-J', 'E-P', 'P-J'})
-        self.assertEqual(self.g_c3.vertices_nao_adjacentes(), [])
-        self.assertEqual(set(self.g_e.vertices_nao_adjacentes()), {'A-D', 'A-E', 'B-A', 'B-C', 'B-D', 'B-E', 'C-E', 'D-C', 'D-A', 'E-D', 'E-C'})
+        self.assertEqual(self.g_c.vertices_nao_adjacentes(), {'C-J', 'C-E', 'C-P', 'E-J', 'E-P', 'P-J'})
+        self.assertEqual(self.g_c3.vertices_nao_adjacentes(), set())
+        self.assertEqual(self.g_e.vertices_nao_adjacentes(), {'A-D', 'A-E', 'B-A', 'B-C', 'B-D', 'B-E', 'C-E', 'D-C', 'D-A', 'E-D', 'E-C'})
 
     def test_ha_laco(self):
         self.assertFalse(self.g_p.ha_laco())
@@ -338,15 +339,15 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.g_e.ha_paralelas())
 
     def test_arestas_sobre_vertice(self):
-        self.assertEqual(set(self.g_p.arestas_sobre_vertice('J')), {'a1'})
-        self.assertEqual(set(self.g_p.arestas_sobre_vertice('C')), {'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'})
-        self.assertEqual(set(self.g_p.arestas_sobre_vertice('M')), {'a7', 'a8'})
-        self.assertEqual(set(self.g_l2.arestas_sobre_vertice('B')), {'a1', 'a2', 'a3'})
-        self.assertEqual(set(self.g_d.arestas_sobre_vertice('C')), set())
-        self.assertEqual(set(self.g_d.arestas_sobre_vertice('A')), {'asd'})
+        self.assertEqual(self.g_p.arestas_sobre_vertice('J'), {'a1'})
+        self.assertEqual(self.g_p.arestas_sobre_vertice('C'), {'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'})
+        self.assertEqual(self.g_p.arestas_sobre_vertice('M'), {'a7', 'a8'})
+        self.assertEqual(self.g_l2.arestas_sobre_vertice('B'), {'a1', 'a2', 'a3'})
+        self.assertEqual(self.g_d.arestas_sobre_vertice('C'), set())
+        self.assertEqual(self.g_d.arestas_sobre_vertice('A'), {'asd'})
         with self.assertRaises(VerticeInvalidoError):
             self.g_p.arestas_sobre_vertice('A')
-        self.assertEqual(set(self.g_e.arestas_sobre_vertice('D')), {'5', '6', '7', '8'})
+        self.assertEqual(self.g_e.arestas_sobre_vertice('D'), {'5', '6', '7', '8'})
 
     def test_warshall(self):
         self.assertEqual(self.g_p.warshall(), self.g_p_m)

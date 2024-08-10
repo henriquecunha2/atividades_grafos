@@ -1,15 +1,17 @@
-from bibgrafo.grafo_matriz_adj_dir import *
+from bibgrafo.grafo_lista_adj_dir import GrafoListaAdjacenciaDirecionado
 from bibgrafo.grafo_errors import *
 
-class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
+
+class MeuGrafo(GrafoListaAdjacenciaDirecionado):
 
     def vertices_nao_adjacentes(self):
         '''
-        Provê uma lista de vértices não adjacentes no grafo. A lista terá o seguinte formato: [X-Z, X-W, ...]
+        Provê um conjunto de vértices não adjacentes no grafo.
+        O conjunto terá o seguinte formato: {X-Z, X-W, ...}
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
-        :return: Uma lista com os pares de vértices não adjacentes
+        :return: Um objeto do tipo set que contém os pares de vértices não adjacentes
         '''
-        pass
+        pass # Apague essa instrução e inicie seu código aqui
 
     def ha_laco(self):
         '''
@@ -18,22 +20,21 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         '''
         pass
 
-
     def grau_entrada(self, V=''):
         '''
-        Provê o grau do vértice passado como parâmetro
+        Provê o grau de entrada do vértice passado como parâmetro
         :param V: O rótulo do vértice a ser analisado
         :return: Um valor inteiro que indica o grau do vértice
-        :raises: VerticeInvalidoException se o vértice não existe no grafo
+        :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
         pass
 
     def grau_saida(self, V=''):
         '''
-        Provê o grau do vértice passado como parâmetro
+        Provê o grau de saída do vértice passado como parâmetro
         :param V: O rótulo do vértice a ser analisado
         :return: Um valor inteiro que indica o grau do vértice
-        :raises: VerticeInvalidoException se o vértice não existe no grafo
+        :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
         pass
 
@@ -47,7 +48,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
     def arestas_sobre_vertice(self, V):
         '''
         Provê uma lista que contém os rótulos das arestas que incidem sobre o vértice passado como parâmetro
-        :param V: O vértice a ser analisado
+        :param V: Um string com o rótulo do vértice a ser analisado
         :return: Uma lista os rótulos das arestas que incidem sobre o vértice
         :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
@@ -57,12 +58,5 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         '''
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
-        '''
-        pass
-
-    def warshall(self):
-        '''
-        Provê a matriz de alcançabilidade de Warshall do grafo
-        :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
         '''
         pass

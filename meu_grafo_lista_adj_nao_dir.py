@@ -1,8 +1,8 @@
-from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
+from bibgrafo.grafo_lista_adj_dir import GrafoListaAdjacenciaDirecionado
 from bibgrafo.grafo_errors import *
 
 
-class MeuGrafo(GrafoListaAdjacencia):
+class MeuGrafo(GrafoListaAdjacenciaDirecionado):
 
     def vertices_nao_adjacentes(self):
         '''

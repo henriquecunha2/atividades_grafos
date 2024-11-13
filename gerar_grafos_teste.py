@@ -3,6 +3,31 @@ from bibgrafo.grafo_json import GrafoJSON
 from bibgrafo.grafo_lista_adj_dir import *
 from bibgrafo.aresta import ArestaDirecionada
 
+import os
+
+def criar_diretorio(nome_diretorio):
+    """
+    Cria um diretório com o nome fornecido, caso ele não exista.
+
+    Parâmetros:
+        nome_diretorio (str): O nome do diretório a ser criado.
+
+    Retorna:
+        str: Uma mensagem indicando se o diretório foi criado ou já existia.
+    """
+    try:
+        if not os.path.exists(nome_diretorio):
+            os.makedirs(nome_diretorio)
+            return f"Diretório '{nome_diretorio}' criado com sucesso."
+        else:
+            return f"Diretório '{nome_diretorio}' já existe."
+    except Exception as e:
+        return f"Ocorreu um erro ao criar o diretório: {e}"
+
+nome_diretorio = "test_json"
+resultado = criar_diretorio(nome_diretorio)
+print(resultado)
+
 '''
     Este arquivo pode ser executado para gerar os arquivos .json
     que contém os grafos a serem utilizados pelos testes unitários

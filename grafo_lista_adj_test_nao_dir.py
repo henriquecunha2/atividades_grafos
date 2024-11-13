@@ -1,5 +1,6 @@
 import unittest
 from meu_grafo_lista_adj_nao_dir import *
+import gerar_grafos_teste
 from bibgrafo.aresta import Aresta
 from bibgrafo.vertice import Vertice
 from bibgrafo.grafo_errors import *

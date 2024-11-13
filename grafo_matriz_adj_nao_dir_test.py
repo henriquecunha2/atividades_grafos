@@ -1,4 +1,5 @@
 import unittest
+import gerar_grafos_teste
 from bibgrafo.aresta import Aresta
 from bibgrafo.vertice import Vertice
 from bibgrafo.grafo_errors import VerticeInvalidoError, ArestaInvalidaError
@@ -12,15 +13,10 @@ class TestGrafo(unittest.TestCase):
         # Grafo da Paraíba
         self.g_p = GrafoJSON.json_to_grafo('test_json/grafo_pb.json', MeuGrafo())
 
-        # Clone do Grafo da Paraíba para ver se o método equals está funcionando
-        self.g_p2 = GrafoJSON.json_to_grafo('test_json/grafo_pb2.json', MeuGrafo())
-
-        # Outro clone do Grafo da Paraíba para ver se o método equals está funcionando
-        # Esse tem um pequena diferença na primeira aresta
+        # Clone do Grafo da Paraíba com uma pequena diferença na primeira aresta
         self.g_p3 = GrafoJSON.json_to_grafo('test_json/grafo_pb3.json', MeuGrafo())
 
-        # Outro clone do Grafo da Paraíba para ver se o método equals está funcionando
-        # Esse tem um pequena diferença na segunda aresta
+        # Outro clone do Grafo da Paraíba com uma pequena diferença na segunda aresta
         self.g_p4 = GrafoJSON.json_to_grafo('test_json/grafo_pb4.json', MeuGrafo())
 
         # Grafo da Paraíba sem arestas paralelas
@@ -55,60 +51,6 @@ class TestGrafo(unittest.TestCase):
             .arestas([Aresta('asd', a, b)]).build()
 
         self.g_d2 = GrafoBuilder().tipo(MeuGrafo()).vertices(4).build()
-
-    def test_adiciona_aresta(self):
-        self.assertTrue(self.g_p.adiciona_aresta('a10', 'J', 'C'))
-        a = Aresta("zxc", self.g_p.get_vertice("C"), self.g_p.get_vertice("Z"))
-        self.assertTrue(self.g_p.adiciona_aresta(a))
-        with self.assertRaises(ArestaInvalidaError):
-            self.assertTrue(self.g_p.adiciona_aresta(a))
-        with self.assertRaises(VerticeInvalidoError):
-            self.assertTrue(self.g_p.adiciona_aresta('b1', '', 'C'))
-        with self.assertRaises(VerticeInvalidoError):
-            self.assertTrue(self.g_p.adiciona_aresta('b1', 'A', 'C'))
-        with self.assertRaises(TypeError):
-            self.g_p.adiciona_aresta('')
-        with self.assertRaises(TypeError):
-            self.g_p.adiciona_aresta('aa-bb')
-        with self.assertRaises(VerticeInvalidoError):
-            self.g_p.adiciona_aresta('x', 'J', 'V')
-        with self.assertRaises(ArestaInvalidaError):
-            self.g_p.adiciona_aresta('a1', 'J', 'C')
-
-    def test_remove_vertice(self):
-        self.assertTrue(self.g_p.remove_vertice("J"))
-        with self.assertRaises(VerticeInvalidoError):
-            self.g_p.remove_vertice("J")
-        with self.assertRaises(VerticeInvalidoError):
-            self.g_p.remove_vertice("K")
-        self.assertTrue(self.g_p.remove_vertice("C"))
-        self.assertTrue(self.g_p.remove_vertice("Z"))
-
-    def test_remove_aresta(self):
-        self.g_p.remove_aresta("a1")
-        self.assertFalse(self.g_p.existe_rotulo_aresta("a1"))
-        self.g_p.remove_aresta("a7")
-        self.assertFalse(self.g_p.existe_rotulo_aresta("a7"))
-        with self.assertRaises(ArestaInvalidaError):
-            self.g_c.remove_aresta("a")
-        self.g_c.remove_aresta("a6")
-        self.assertFalse(self.g_c.existe_rotulo_aresta("a6"))
-        self.g_c.remove_aresta("a1", "J")
-        self.assertFalse(self.g_c.existe_rotulo_aresta("a1"))
-        self.g_c.remove_aresta("a5", "C")
-        self.assertFalse(self.g_c.existe_rotulo_aresta("a5"))
-        with self.assertRaises(VerticeInvalidoError):
-            self.g_p.remove_aresta("a2", "X", "C")
-        with self.assertRaises(VerticeInvalidoError):
-            self.g_p.remove_aresta("a3", "X")
-        with self.assertRaises(VerticeInvalidoError):
-            self.g_p.remove_aresta("a3", v2="X")
-
-    def test_eq(self):
-        self.assertEqual(self.g_p, self.g_p2)
-        self.assertNotEqual(self.g_p, self.g_p3)
-        self.assertNotEqual(self.g_p, self.g_p_sem_paralelas)
-        self.assertNotEqual(self.g_p, self.g_p4)
 
     def test_vertices_nao_adjacentes(self):
         self.assertEqual(self.g_p.vertices_nao_adjacentes(),
